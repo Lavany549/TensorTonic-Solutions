@@ -18,7 +18,9 @@ def train_logistic_regression(X, y, lr=0.1, steps=1000):
     for i in range(steps):
         z = X @ w + b
         y_pred = _sigmoid(z)
+        # print(y_pred, y)
         y_pred = (y_pred >= 0.5).astype(int)
+        # print(y_pred, y)
 
         dw = (1 / m) * (X.T @ (y_pred - y))
         db = (1 / m) * np.sum(y_pred - y)
@@ -28,6 +30,6 @@ def train_logistic_regression(X, y, lr=0.1, steps=1000):
 
         if i % 100 == 0:
             pred_labels = (y_pred >= 0.5).astype(int)
-            print("accuracy score:", accuracy_score(y, pred_labels))
+            # print("accuracy score:", accuracy_score(y, pred_labels))
 
     return (w, b)
